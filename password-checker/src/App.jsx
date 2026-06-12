@@ -1,6 +1,5 @@
 import { useState } from "react";
 import logo from "./assets/logo2026.png";
-<assets></assets>
 import "./App.css";
 
 function App() {
@@ -51,6 +50,11 @@ function App() {
   return (
     <main className="page">
       <section className="card">
+        <div className="brand">
+          <img src={logo} alt="Logo da LTHS Tecnologia" />
+          <span>LTHS Tecnologia</span>
+        </div>
+
         <div className="header">
           <span className="badge">Security Check</span>
           <h1>Verificador de força de senha</h1>
@@ -109,6 +113,11 @@ function App() {
           símbolos e não deve ser uma palavra fácil de adivinhar.
         </div>
       </section>
+
+      <footer className="footer">
+        © {new Date().getFullYear()} LTHS Tecnologia. Todos os direitos
+        reservados.
+      </footer>
     </main>
   );
 }

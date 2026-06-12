@@ -241,3 +241,32 @@ button:hover {
     text-align: left;
   }
 }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.brand img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 6px;
+}
+
+.brand span {
+  color: #f8fafc;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.footer {
+  margin-top: 18px;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  text-align: center;
+}
