@@ -1,0 +1,243 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background:
+    radial-gradient(circle at top left, #6d5dfc 0, transparent 34%),
+    radial-gradient(circle at bottom right, #14b8a6 0, transparent 30%),
+    #0f172a;
+  color: #e5e7eb;
+}
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  padding: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 28px;
+  background: rgba(15, 23, 42, 0.78);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+.header {
+  margin-bottom: 28px;
+}
+
+.badge {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(99, 102, 241, 0.18);
+  color: #c4b5fd;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1;
+}
+
+p {
+  margin: 0;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.inputGroup {
+  margin-bottom: 24px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #cbd5e1;
+  font-weight: 700;
+}
+
+.passwordBox {
+  display: flex;
+  gap: 10px;
+  padding: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 18px;
+  background: rgba(2, 6, 23, 0.55);
+}
+
+input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 12px;
+  background: transparent;
+  color: #f8fafc;
+  font-size: 1rem;
+}
+
+input::placeholder {
+  color: #64748b;
+}
+
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 0 16px;
+  background: #6366f1;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  background: #4f46e5;
+}
+
+.strengthArea {
+  margin-bottom: 24px;
+}
+
+.strengthTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  color: #cbd5e1;
+}
+
+.strengthTop strong {
+  text-align: right;
+}
+
+.bar {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(148, 163, 184, 0.18);
+}
+
+.barFill {
+  height: 100%;
+  border-radius: inherit;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+.empty {
+  color: #94a3b8;
+}
+
+.weak {
+  color: #fb7185;
+}
+
+.medium {
+  color: #facc15;
+}
+
+.strong {
+  color: #34d399;
+}
+
+.barFill.empty {
+  background: transparent;
+}
+
+.barFill.weak {
+  background: linear-gradient(90deg, #ef4444, #fb7185);
+}
+
+.barFill.medium {
+  background: linear-gradient(90deg, #f97316, #facc15);
+}
+
+.barFill.strong {
+  background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.rules {
+  display: grid;
+  gap: 12px;
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.rules li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(15, 23, 42, 0.7);
+  color: #94a3b8;
+  transition: 0.2s ease;
+}
+
+.rules li span {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(248, 113, 113, 0.14);
+  color: #fb7185;
+  font-weight: 800;
+}
+
+.rules li.passed {
+  color: #e5e7eb;
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.rules li.passed span {
+  background: rgba(52, 211, 153, 0.18);
+  color: #34d399;
+}
+
+.tip {
+  padding: 16px;
+  border-left: 4px solid #6366f1;
+  border-radius: 14px;
+  background: rgba(99, 102, 241, 0.12);
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+@media (max-width: 520px) {
+  .card {
+    padding: 24px;
+  }
+
+  .passwordBox {
+    flex-direction: column;
+  }
+
+  button {
+    padding: 12px;
+  }
+
+  .strengthTop {
+    flex-direction: column;
+  }
+
+  .strengthTop strong {
+    text-align: left;
+  }
+}
