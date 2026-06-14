@@ -57,7 +57,7 @@ function App() {
 
         <div className="header">
           <span className="badge">Security Check</span>
-          <h1>Verificador de força de senha</h1>
+          <h1>Verificador de senhas</h1>
           <p>
             Digite uma senha e veja em tempo real se ela atende aos critérios
             de segurança.
