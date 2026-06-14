@@ -1,1 +1,5 @@
-App para verificação de senha.
+
+# forca_senha
+
+App para verificar se a senha é segura.
+
