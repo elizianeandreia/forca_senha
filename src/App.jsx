@@ -1,125 +1,228 @@
-import { useState } from "react";
-import logo from "./assets/logo2026.png";
-import "./App.css";
+import { useMemo, useState } from 'react'
+import PasswordInput from './components/PasswordInput.jsx'
+import SecurityScore from './components/SecurityScore.jsx'
+import SecurityCriteria from './components/SecurityCriteria.jsx'
+import TechnicalAnalysis from './components/TechnicalAnalysis.jsx'
+import SecurityNotice from './components/SecurityNotice.jsx'
+import Recommendations from './components/Recommendations.jsx'
+import Icon from './components/Icon.jsx'
+import { analyzePassword } from './utils/analyzePassword.js'
 
-function App() {
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+export default function App() {
+  const [password, setPassword] = useState('')
+  const [visible, setVisible] = useState(false)
+  const analysis = useMemo(() => analyzePassword(password), [password])
 
-  const rules = [
-    {
-      label: "Pelo menos 8 caracteres",
-      passed: password.length >= 8,
-    },
-    {
-      label: "Contém letra maiúscula",
-      passed: /[A-Z]/.test(password),
-    },
-    {
-      label: "Contém letra minúscula",
-      passed: /[a-z]/.test(password),
-    },
-    {
-      label: "Contém número",
-      passed: /\d/.test(password),
-    },
-    {
-      label: "Contém caractere especial",
-      passed: /[^A-Za-z0-9]/.test(password),
-    },
-  ];
-
-  const score = rules.filter((rule) => rule.passed).length;
-
-  function getStrengthLabel() {
-    if (password.length === 0) return "Digite uma senha";
-    if (score <= 2) return "Senha fraca";
-    if (score <= 4) return "Senha média";
-    return "Senha forte";
+  function clearAnalysis() {
+    setPassword('')
+    setVisible(false)
   }
-
-  function getStrengthClass() {
-    if (password.length === 0) return "empty";
-    if (score <= 2) return "weak";
-    if (score <= 4) return "medium";
-    return "strong";
-  }
-
-  const strengthClass = getStrengthClass();
 
   return (
-    <main className="page">
-      <section className="card">
-        <div className="brand">
-          <img src={logo} alt="Logo da LTHS Tecnologia" />
-          <span>LTHS Tecnologia</span>
-        </div>
+    <div className={`app level-${analysis.level}`}>
+      <div className="ambient ambient-one" />
+      <div className="ambient ambient-two" />
 
-        <div className="header">
-          <span className="badge">Security Check</span>
-          <h1>Verificador de senhas </h1>
+      <header className="topbar">
+        <a
+          className="product-brand"
+          href="#top"
+          aria-label="Password Intelligence, início"
+        >
+          <span className="product-mark">
+            <Icon name="shield" size={23} />
+          </span>
+
+          <span className="product-name">
+            <strong>
+              PASSWORD <em>INTELLIGENCE</em>
+            </strong>
+            <small>SECURITY ANALYSIS CONSOLE</small>
+          </span>
+        </a>
+
+        <div className="topbar-meta">
+          <span className="developer-signature">
+            BY LTHS TECNOLOGIA
+          </span>
+
+          <span className="environment-badge">
+            <i />
+            LOCAL ENGINE
+          </span>
+
+          <span className="version-badge">
+            v1.0
+          </span>
+        </div>
+      </header>
+
+      <main id="top" className="workspace">
+        <section className="hero">
+          <div className="hero-status">
+            <span className="hero-line" />
+            PASSWORD SECURITY LAB
+          </div>
+
+          <h1>
+            Avalie a resistência da sua senha{' '}
+            <span>antes de colocá-la em uso.</span>
+          </h1>
+
           <p>
-            Digite uma senha e veja em tempo real se ela atende aos critérios
-            de segurança.
+            Avaliação instantânea por critérios de comprimento,
+            diversidade e previsibilidade, executada integralmente
+            no seu dispositivo.
           </p>
-        </div>
+        </section>
 
-        <div className="inputGroup">
-          <label htmlFor="password">Senha</label>
+        <section
+          className="analysis-shell"
+          aria-label="Console de análise de senha"
+        >
+          <div className="console-header">
+            <div className="console-title">
+              <span
+                className="terminal-dots"
+                aria-hidden="true"
+              >
+                <i />
+                <i />
+                <i />
+              </span>
 
-          <div className="passwordBox">
-            <input
-              id="password"
-              type={showPassword ? "text" : "password"}
-              placeholder="Digite sua senha..."
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
+              <span>
+                security://password-analysis
+              </span>
+            </div>
 
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "Ocultar" : "Mostrar"}
-            </button>
-          </div>
-        </div>
-
-        <div className="strengthArea">
-          <div className="strengthTop">
-            <span>Força da senha</span>
-            <strong className={strengthClass}>{getStrengthLabel()}</strong>
+            <span className="session-id">
+              SESSION // EPHEMERAL
+            </span>
           </div>
 
-          <div className="bar">
-            <div
-              className={`barFill ${strengthClass}`}
-              style={{ width: `${(score / rules.length) * 100}%` }}
-            ></div>
+          <div className="console-body">
+            <div className="input-zone">
+              <div className="input-heading">
+                <div>
+                  <span className="eyebrow">
+                    INPUT
+                  </span>
+
+                  <h2>
+                    Senha em análise
+                  </h2>
+                </div>
+
+                <span className="input-secure">
+                  <Icon name="lock" size={14} />
+                  NÃO PERSISTENTE
+                </span>
+              </div>
+
+              <PasswordInput
+                password={password}
+                onChange={setPassword}
+                onClear={clearAnalysis}
+                visible={visible}
+                onToggleVisibility={() =>
+                  setVisible((current) => !current)
+                }
+              />
+            </div>
+
+            <div className="dashboard-grid">
+              <div className="dashboard-primary">
+                <SecurityScore analysis={analysis} />
+
+                <TechnicalAnalysis
+                  metrics={analysis.metrics}
+                />
+
+                <Recommendations
+                  recommendations={analysis.recommendations}
+                  level={analysis.level}
+                />
+              </div>
+
+              <aside className="dashboard-sidebar">
+                <SecurityCriteria
+                  criteria={analysis.criteria}
+                />
+
+                <section className="intel-card panel">
+                  <div className="intel-card-icon">
+                    <Icon name="info" size={19} />
+                  </div>
+
+                  <span className="eyebrow">
+                    COMO INTERPRETAR
+                  </span>
+
+                  <h2>
+                    Score heurístico, não garantia criptográfica.
+                  </h2>
+
+                  <p>
+                    O indicador estima resistência aparente com
+                    base em sinais locais. Senhas exclusivas,
+                    longas e armazenadas em um gerenciador
+                    continuam sendo a melhor prática.
+                  </p>
+                </section>
+              </aside>
+            </div>
+
+            <SecurityNotice />
           </div>
-        </div>
+        </section>
 
-        <ul className="rules">
-          {rules.map((rule) => (
-            <li key={rule.label} className={rule.passed ? "passed" : ""}>
-              <span>{rule.passed ? "✓" : "×"}</span>
-              {rule.label}
-            </li>
-          ))}
-        </ul>
+        <section
+          className="system-strip"
+          aria-label="Informações do mecanismo"
+        >
+          <div>
+            <span>ENGINE</span>
+            <strong>LOCAL HEURISTIC</strong>
+          </div>
 
-        <div className="tip">
-          <strong>Dica:</strong> uma senha forte mistura letras, números,
-          símbolos e não deve ser uma palavra fácil de adivinhar.
-        </div>
-      </section>
+          <div>
+            <span>TRANSMISSION</span>
+            <strong>NONE</strong>
+          </div>
+
+          <div>
+            <span>STORAGE</span>
+            <strong>NONE</strong>
+          </div>
+
+          <div>
+            <span>RESPONSE</span>
+            <strong>REAL TIME</strong>
+          </div>
+        </section>
+      </main>
 
       <footer className="footer">
-        © {new Date().getFullYear()} LTHS Tecnologia. Todos os direitos
-        reservados.
-      </footer>
-    </main>
-  );
-}
+        <div>
+          <span>
+            DESENVOLVIDO POR
+          </span>
 
-export default App;
+          <strong>
+            LTHS Tecnologia
+          </strong>
+        </div>
+
+        <p>
+          Security Engineering Lab • Projeto demonstrativo
+          de análise local de senhas
+        </p>
+
+        <span className="footer-code">
+          © 2026 LTHS TECNOLOGIA
+        </span>
+      </footer>
+    </div>
+  )
+}
