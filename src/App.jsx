@@ -6,6 +6,7 @@ import TechnicalAnalysis from './components/TechnicalAnalysis.jsx'
 import SecurityNotice from './components/SecurityNotice.jsx'
 import Recommendations from './components/Recommendations.jsx'
 import Icon from './components/Icon.jsx'
+import MatrixRain from './components/MatrixRain.jsx'
 import { analyzePassword } from './utils/analyzePassword.js'
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
 
   return (
     <div className={`app level-${analysis.level}`}>
+      <MatrixRain level={analysis.level} />
       <div className="ambient ambient-one" />
       <div className="ambient ambient-two" />
 
