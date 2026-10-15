@@ -62,7 +62,7 @@ export default function App() {
       <main id="top" className="workspace">
         <section className="hero">
           <div className="hero-status">
-                        PASSWORD SECURITY LAB
+      PASSWORD SECURITY LAB
           </div>
 
           <h1>
