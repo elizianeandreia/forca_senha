@@ -46,9 +46,7 @@ export default function App() {
       <main id="top" className="workspace">
         <section className="hero">
           <div className="hero-status">
-            <span className="hero-line" />
             SECURITY ANALYSIS CONSOLE
-            <span className="hero-line" />
           </div>
 
           <h1>
@@ -63,8 +61,8 @@ export default function App() {
         <section className="analysis-shell" aria-label="Console de análise de senha">
           <div className="console-header">
             <div className="console-title">
-              <span className="terminal-dots" aria-hidden="true">
-                <i /><i /><i />
+              <span className="console-icon">
+                <Icon name="terminal" size={14} />
               </span>
               <span>security://password-analysis</span>
             </div>
