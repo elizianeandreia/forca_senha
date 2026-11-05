@@ -22,99 +22,62 @@ export default function App() {
   return (
     <div className={`app level-${analysis.level}`}>
       <MatrixRain level={analysis.level} />
-      <div className="ambient ambient-one" />
-      <div className="ambient ambient-two" />
-
+      
       <header className="topbar">
-        <a
-          className="product-brand"
-          href="#top"
-          aria-label="Password Intelligence, início"
-        >
+        <a className="product-brand" href="#top" aria-label="Password Intelligence, início">
           <span className="product-mark">
-            <Icon name="shield" size={23} />
+            <Icon name="shield" size={22} />
           </span>
-
           <span className="product-name">
-            <strong>
-              PASSWORD <em>INTELLIGENCE</em>
-            </strong>
-            <small>SECURITY ANALYSIS CONSOLE</small>
+            <strong>LTHS <em>SECURITY</em></strong>
+            <small>PASSWORD INTELLIGENCE ENGINE</small>
           </span>
         </a>
 
         <div className="topbar-meta">
-          <span className="developer-signature">
-            BY LTHS TECNOLOGIA
-          </span>
-
           <span className="environment-badge">
             <i />
-            LOCAL ENGINE
+            ENGINE: LOCAL
           </span>
-
-          <span className="version-badge">
-            v1.0
-          </span>
+          <span className="version-badge">v2.1</span>
         </div>
       </header>
 
       <main id="top" className="workspace">
         <section className="hero">
           <div className="hero-status">
-      PASSWORD SECURITY LAB
+            <span className="hero-line" />
+            SECURITY ANALYSIS CONSOLE
+            <span className="hero-line" />
           </div>
 
           <h1>
-            Avalie a resistência da sua senha{' '}
-            <span>antes de colocá-la em uso.</span>
+            Avalie a resistência da sua senha <span>antes de usá-la.</span>
           </h1>
-
           <p>
-            Avaliação instantânea por critérios de comprimento,
-            diversidade e previsibilidade, executada integralmente
-            no seu dispositivo.
+            Avaliação local de comprimento, diversidade e previsibilidade. 
+            Nenhum dado é enviado ou armazenado.
           </p>
         </section>
 
-        <section
-          className="analysis-shell"
-          aria-label="Console de análise de senha"
-        >
+        <section className="analysis-shell" aria-label="Console de análise de senha">
           <div className="console-header">
             <div className="console-title">
-              <span
-                className="terminal-dots"
-                aria-hidden="true"
-              >
-                <i />
-                <i />
-                <i />
+              <span className="terminal-dots" aria-hidden="true">
+                <i /><i /><i />
               </span>
-
-              <span>
-                security://password-analysis
-              </span>
+              <span>security://password-analysis</span>
             </div>
-
-            <span className="session-id">
-              SESSION // EPHEMERAL
-            </span>
+            <span className="session-id">SESSION // EPHEMERAL</span>
           </div>
 
           <div className="console-body">
             <div className="input-zone">
               <div className="input-heading">
                 <div>
-                  <span className="eyebrow">
-                    INPUT
-                  </span>
-
-                  <h2>
-                    Senha em análise
-                  </h2>
+                  <span className="eyebrow">INPUT</span>
+                  <h2>Senha em análise</h2>
                 </div>
-
                 <span className="input-secure">
                   <Icon name="lock" size={14} />
                   NÃO PERSISTENTE
@@ -126,49 +89,25 @@ export default function App() {
                 onChange={setPassword}
                 onClear={clearAnalysis}
                 visible={visible}
-                onToggleVisibility={() =>
-                  setVisible((current) => !current)
-                }
+                onToggleVisibility={() => setVisible((current) => !current)}
               />
             </div>
 
             <div className="dashboard-grid">
               <div className="dashboard-primary">
                 <SecurityScore analysis={analysis} />
-
-                <TechnicalAnalysis
-                  metrics={analysis.metrics}
-                />
-
-                <Recommendations
-                  recommendations={analysis.recommendations}
-                  level={analysis.level}
-                />
+                <TechnicalAnalysis metrics={analysis.metrics} />
+                <Recommendations recommendations={analysis.recommendations} level={analysis.level} />
               </div>
 
               <aside className="dashboard-sidebar">
-                <SecurityCriteria
-                  criteria={analysis.criteria}
-                />
-
+                <SecurityCriteria criteria={analysis.criteria} />
                 <section className="intel-card panel">
-                  <div className="intel-card-icon">
-                    <Icon name="info" size={19} />
-                  </div>
-
-                  <span className="eyebrow">
-                    COMO INTERPRETAR
-                  </span>
-
-                  <h2>
-                    Score heurístico, não garantia criptográfica.
-                  </h2>
-
+                  <span className="eyebrow">HEURÍSTICA</span>
+                  <h2>Score de resistência, não garantia criptográfica.</h2>
                   <p>
-                    O indicador estima resistência aparente com
-                    base em sinais locais. Senhas exclusivas,
-                    longas e armazenadas em um gerenciador
-                    continuam sendo a melhor prática.
+                    O indicador estima a resistência aparente com base em padrões locais. 
+                    Senhas exclusivas e um gerenciador de senhas continuam sendo a melhor prática.
                   </p>
                 </section>
               </aside>
@@ -178,51 +117,21 @@ export default function App() {
           </div>
         </section>
 
-        <section
-          className="system-strip"
-          aria-label="Informações do mecanismo"
-        >
-          <div>
-            <span>ENGINE</span>
-            <strong>LOCAL HEURISTIC</strong>
-          </div>
-
-          <div>
-            <span>TRANSMISSION</span>
-            <strong>NONE</strong>
-          </div>
-
-          <div>
-            <span>STORAGE</span>
-            <strong>NONE</strong>
-          </div>
-
-          <div>
-            <span>RESPONSE</span>
-            <strong>REAL TIME</strong>
-          </div>
+        <section className="system-strip" aria-label="Informações do mecanismo">
+          <div><span>ENGINE</span><strong>LOCAL HEURISTIC</strong></div>
+          <div><span>TRANSMISSION</span><strong>NONE</strong></div>
+          <div><span>STORAGE</span><strong>NONE</strong></div>
+          <div><span>RESPONSE</span><strong>REAL TIME</strong></div>
         </section>
       </main>
 
       <footer className="footer">
         <div>
-          <span>
-            DESENVOLVIDO POR
-          </span>
-
-          <strong>
-            LTHS Tecnologia
-          </strong>
+          <span>DESENVOLVIDO POR</span>
+          <strong>LTHS Tecnologia</strong>
         </div>
-
-        <p>
-          Security Engineering Lab • Projeto demonstrativo
-          de análise local de senhas
-        </p>
-
-        <span className="footer-code">
-          © 2026 LTHS TECNOLOGIA
-        </span>
+        <p>Security Engineering Lab • Projeto demonstrativo</p>
+        <span className="footer-code">© 2026 LTHS TECNOLOGIA</span>
       </footer>
     </div>
   )
