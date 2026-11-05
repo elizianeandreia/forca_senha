@@ -8,6 +8,7 @@ import Recommendations from './components/Recommendations.jsx'
 import Icon from './components/Icon.jsx'
 import MatrixRain from './components/MatrixRain.jsx'
 import { analyzePassword } from './utils/analyzePassword.js'
+import logoLths from './imagem/logo2026.png'
 
 export default function App() {
   const [password, setPassword] = useState('')
@@ -26,7 +27,7 @@ export default function App() {
       <header className="topbar">
         <a className="product-brand" href="#top" aria-label="Password Intelligence, início">
           <span className="product-mark">
-            <Icon name="shield" size={22} />
+            <img src={logoLths} alt="LTHS Tecnologia" />
           </span>
           <span className="product-name">
             <strong>LTHS <em>SECURITY</em></strong>
